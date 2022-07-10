@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  res.send('<h1>HcUy6Re2LLBRtj</h1>');
+  const nombre = req.query.nombre;
+  res.send(`<h1>Hola, ${nombre ? nombre : 'desconocido'}!</h1>`);
 });
 
 const port = 3000;
