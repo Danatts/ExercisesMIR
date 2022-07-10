@@ -1,15 +1,18 @@
 const express = require('express');
 const app = express();
 
-const capitalize = (word) => {
-  return word.charAt(0).toUpperCase() + word.slice(1);
+let output = '';
+
+for (let i = 1; i <= 50; i++){
+  i % 2 === 0 ? output += `<p>${i} Soy Par!</p>` : output += `<p>${i} Soy Impar!</p>`
 };
 
-app.get('/makers/:name', (req, res) => {
-  let name = req.params.name;
-  const newName = capitalize(name);
-  res.send(`<h1>Hola ${name ? newName : 'Desconocido'}!</h1>`);
+
+app.get('/', (req, res) => {
+  res.send(output);
 });
+
+app.get('/favicon.ico', (req, res) => res.status(200));
 
 const port = 3000;
 
