@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   const name = req.body.name;
-  res.send(`<h1>Hola ${name}</h1>`);
+  res.send(`<h1>Hola ${name}!</h1>`);
 });
 
 
