@@ -1,21 +1,25 @@
 const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+
 const app = express();
 
-let output = '';
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
-for (let i = 1; i <= 50; i++){
-  i % 2 === 0 ? output += `<p>${i} Soy Par!</p>` : output += `<p>${i} Soy Impar!</p>`
-};
-
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
-  res.send(output);
+  res.render('index');
 });
 
-app.get('/favicon.ico', (req, res) => res.status(200));
+app.post('/', (req, res) => {
+  const name = req.body.name;
+  res.send(`<h1>Hola ${name}</h1>`);
+});
+
 
 const port = 3000;
-
 app.listen(port, () => {
   console.log(`Listening on port 3000!`)
 });
